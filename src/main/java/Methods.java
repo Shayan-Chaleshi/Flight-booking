@@ -17,6 +17,8 @@ public class Methods
         }
     }
 
+    int loged_in_index;
+
 
     public void sign_menu() throws IOException, InterruptedException
     {
@@ -88,7 +90,7 @@ public class Methods
 
 
         /**invalid condition*/
-        if (user_checker(username)==1)
+        if (user_existence_checker(username)==1)
         {
             System.out.println("\n\n\n\n\n\n\n");
             System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
@@ -106,8 +108,26 @@ public class Methods
             sign_in();
         }
 
+        /** Wrong password **/
+        if (user_existence_checker(username,password)==false)
+        {
+            System.out.println("\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            incorrect password               *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            please try again...              *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            press any key to return...       *");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            sign_in();
+        }
 
 
+        regular_user_menu();
 
 
 
@@ -115,7 +135,10 @@ public class Methods
 
     }
 
-/***********************************************************************************************************************************************************************/
+
+
+
+    /***********************************************************************************************************************************************************************/
 
     public void sign_up () throws IOException, InterruptedException
     {
@@ -137,7 +160,7 @@ public class Methods
         password=scanner.next();
 
 
-       if (user_checker(username)==0)
+       if (user_existence_checker(username)==0)
        {
            System.out.println("this username exist \n try another one...\npress any key to return...");
            scanner.next();
@@ -168,7 +191,7 @@ public class Methods
 
 /***********************************************************************************************************************************************************************/
 
-    public int user_checker(String username )throws IOException, InterruptedException
+    public int user_existence_checker(String username )throws IOException, InterruptedException
     {
 
         for (int i = 0; i < userlist.length; i++)
@@ -179,6 +202,22 @@ public class Methods
             }
         }
         return 1;
+    }
+
+    /**override*/
+    public boolean user_existence_checker(String username , String password)throws IOException, InterruptedException
+    {
+
+        for (int i = 0; i < userlist.length; i++)
+        {
+            if( username.equals(userlist[i].username) && password.equals(userlist[i].password))
+            {
+                loged_in_index=i;
+                return true;
+
+            }
+        }
+        return false;
     }
 
 /***********************************************************************************************************************************************************************/
@@ -193,7 +232,7 @@ public class Methods
                 '}';
     }
 
-    /***********************************************************************************************************************************************************************/
+/***********************************************************************************************************************************************************************/
 
 
 public void print()throws IOException, InterruptedException
@@ -214,6 +253,29 @@ public void print()throws IOException, InterruptedException
         scanner.next();
         sign_menu();
     }
+
+/***********************************************************************************************************************************************************************/
+
+
+public void regular_user_menu() throws IOException, InterruptedException {
+
+    System.out.println("logged in");
+    scanner.next();
+    sign_menu();
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
 }
 
 
