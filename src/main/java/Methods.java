@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Methods
@@ -6,9 +7,10 @@ public class Methods
     Scanner scanner=new Scanner(System.in);
     User userlist[]=new User[10];
     int user_counter=0;
-
+    int newer_flag=0;
     public void user_newer()
     {
+        newer_flag=1;
         for (int i = 0; i < userlist.length; i++)
         {
             userlist[i]=new User();
@@ -20,7 +22,9 @@ public class Methods
     {
         int sign_mod=0;
         cls();
-        user_newer();
+        if (newer_flag==0)
+            user_newer();
+
         System.out.println("\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
         System.out.println("\t\t\t\t\t*                 Welcome                     *");
@@ -29,7 +33,7 @@ public class Methods
         System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t*  1)sign up                                  *");
         System.out.println("\t\t\t\t\t*  2)sign in                                  *");
-        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*  3)toString                                 *");
         System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
@@ -45,6 +49,9 @@ public class Methods
             case 2 :
                 sign_in();
                 break;
+            case 3 :
+                tostring();
+                break;
 
             default :
                 System.out.println("invalid input...\npress any key to return...");
@@ -56,7 +63,9 @@ public class Methods
 
     }
 
-/***********************************************************************************************************************************************************************/
+
+
+    /***********************************************************************************************************************************************************************/
     public void sign_in () throws IOException, InterruptedException
     {
         cls();
@@ -71,6 +80,39 @@ public class Methods
         System.out.println("\t\t\t\t\t*  password:                                  *");
         System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        String username;
+        String password;
+
+        username= scanner.next();
+        password=scanner.next();
+
+
+        /**invalid condition*/
+        if (user_checker(username)==1)
+        {
+            System.out.println("\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            User does not exist              *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            please try again...              *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*            press any key to return...       *");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+
+            scanner.next();
+            sign_in();
+        }
+
+
+
+
+
+
+
+
     }
 
 /***********************************************************************************************************************************************************************/
@@ -107,8 +149,8 @@ public class Methods
 
            userlist[user_counter].setUsername(username);
            userlist[user_counter].setPassword(password);
-           sign_menu();
            user_counter++;
+           sign_menu();
 
            }
        }
@@ -126,7 +168,7 @@ public class Methods
 
 /***********************************************************************************************************************************************************************/
 
-    public int user_checker(String username )
+    public int user_checker(String username )throws IOException, InterruptedException
     {
 
         for (int i = 0; i < userlist.length; i++)
@@ -141,16 +183,37 @@ public class Methods
 
 /***********************************************************************************************************************************************************************/
 
+    @Override
+    public String toString() {
+        return "Methods{" +
+                "scanner=" + scanner +
+                ", userlist=" + Arrays.toString(userlist) +
+                ", user_counter=" + user_counter +
+                ", newer_flag=" + newer_flag +
+                '}';
+    }
 
-public void print()
+    /***********************************************************************************************************************************************************************/
+
+
+public void print()throws IOException, InterruptedException
 {
     for (int i = 0; i < userlist.length; i++) {
         System.out.println(userlist.toString());
     }
 }
-    
 
+/***********************************************************************************************************************************************************************/
 
+    private void tostring() throws IOException, InterruptedException {
+        User instance = new User();
+        toString();
+
+        instance.toString();
+        System.out.println("press any key to return ...");
+        scanner.next();
+        sign_menu();
+    }
 }
 
 
