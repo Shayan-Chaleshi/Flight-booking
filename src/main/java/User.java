@@ -1,16 +1,10 @@
 public class User
 {
-    public String username;
-    public String password;
+    private String username;
+    private String password;
 
-    public int vault;
+    private int vault;
 
-
-    public void delete_user()
-    {
-        username=null;
-        password=null;
-    }
 
     public String getUsername() {
         return username;

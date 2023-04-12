@@ -206,7 +206,7 @@ public class Methods
 
         for (int i = 0; i < userlist.length; i++)
         {
-            if( username.equals(userlist[i].username) )
+            if( username.equals(userlist[i].getUsername()) )
             {
                 return 0;
             }
@@ -220,7 +220,7 @@ public class Methods
 
         for (int i = 0; i < userlist.length; i++)
         {
-            if( username.equals(userlist[i].username) && password.equals(userlist[i].password))
+            if( username.equals(userlist[i].getUsername()) && password.equals(userlist[i].getPassword()))
             {
                 loged_in_index=i;
                 return true;
@@ -245,7 +245,7 @@ public class Methods
         System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t*  1)sign up                                  *");
         System.out.println("\t\t\t\t\t*  2)sign in                                  *");
-        System.out.println("\t\t\t\t\t*  3)toString                                 *");
+        System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
@@ -313,56 +313,62 @@ public class Methods
 
 
 
-/*************************************************************************  Flight table  ************************************************************************************************/
+/*************************************************************************  Add flight menu  ************************************************************************************************/
+    void add_flight_menu()
+    {
+        Admin admin = new Admin();
+        String id;
+        System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t\t*               Add flight                    *");
+        System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*  please enter a flight id to edit details:  *");
+        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
+        id = scanner.next();
+        if (admin.if_flight_exist(id) == false)
+        {
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t*               Add flight                    *");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*        flight does not exist                *");
+            System.out.println("\t\t\t\t\t*        press any key to try again...        *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            add_flight_menu();
+        }
 
+        else
+        {
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t*               Add flight                    *");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t*      which one do you want to change        *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*    1)                                         *");
+            System.out.println("\t\t\t\t\t*    2)                                     *");
+            System.out.println("\t\t\t\t\t*               *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        }
 
+    }
 
 
 }
 /*************************************************************************           ************************************************************************************************/
-
-
-
-
-
-//
-//            System.out.print("\n\t\t\t\t\t\t\t\t\t\033[90m      << Flights List >>\033[97m\n");
-//
-//            System.out.println("\033[35m");
-//            System.out.print("\t\t\t\t\t");
-//            System.out.print("+---------------------------------------------------------------------------------------------+");
-//            try{Thread.sleep(80);}catch(InterruptedException e) {};
-//
-//
-//            System.out.print("\n\t\t\t\t\t");
-//            System.out.printf("| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s|","\033[33m  Flight ID  \033[35m","\033[33m   Origins   \033[35m","\033[33m  Destention  \033[35m","\033[33m    Data    \033[35m","\033[33m   Time   \033[35m","\033[33m   Price   \033[35m","\033[33m Seats \033[35m");
-//            System.out.println();
-//            try{Thread.sleep(80);}catch(InterruptedException e) {};
-//
-//
-//            for (int i = 0; i < matrix.length; i++)
-//            {
-//
-//                System.out.print("\033[35m\t\t\t\t\t");
-//                System.out.print("+---------------------------------------------------------------------------------------------+");
-//                try{Thread.sleep(80);}catch(InterruptedException e) {};
-//
-//
-//                System.out.print("\n\t\t\t\t\t");
-//                System.out.printf("|\033[97m    %-10s\033[35m|\033[97m    %-10s\033[35m|\033[97m    %-11s\033[35m|\033[97m %-12s\033[35m|\033[97m  %-9s\033[35m|\033[97m  %-10s\033[35m|\033[97m  %-4s\033[35m  ",matrix[i],matrix[i],matrix[i],matrix[i],matrix[i],matrix[i],matrix[i]);
-//                System.out.println("|");
-//                try{Thread.sleep(80);}catch(InterruptedException e) {};
-//
-//            }
-//
-//
-//            System.out.print("\t\t\t\t\t");
-//            System.out.print("+---------------------------------------------------------------------------------------------+");
-//
-//
-//
-//        }
-//
-//
-//
