@@ -106,14 +106,13 @@ public class Admin
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*  please enter the following info to add :   *");
         System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*   1---> Flight id                           *");
-        System.out.println("\t\t\t\t*   2---> Origin                              *");
-        System.out.println("\t\t\t\t*   3---> Destination                         *");
-        System.out.println("\t\t\t\t*   4---> Time                                *");
-        System.out.println("\t\t\t\t*   5---> Date                                *");
-        System.out.println("\t\t\t\t*   6---> Price                               *");
-        System.out.println("\t\t\t\t*   7---> Seats                               *");
-        System.out.println("\t\t\t\t*   8---> Exit                                *");
+        System.out.println("\t\t\t\t*   1---> Origin                              *");
+        System.out.println("\t\t\t\t*   2---> Destination                         *");
+        System.out.println("\t\t\t\t*   3---> Time                                *");
+        System.out.println("\t\t\t\t*   4---> Date                                *");
+        System.out.println("\t\t\t\t*   5---> Price                               *");
+        System.out.println("\t\t\t\t*   6---> Seats                               *");
+        System.out.println("\t\t\t\t*   7---> Exit                                *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
@@ -123,8 +122,9 @@ public class Admin
         String input;
 
 
-        System.out.print("\t\t\t\t\t#  Flight id --->  ");
-        input=scanner.next();
+        input="WX-";
+        input+=FLight.id_counter;
+        FLight.id_counter++;
         Login.flight_ary[flight_index].setFlight_id(input.toUpperCase());
 
 

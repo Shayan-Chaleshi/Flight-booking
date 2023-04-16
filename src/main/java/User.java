@@ -21,11 +21,20 @@ public class User
         return password;
     }
 
-    public void setUsername(String username  )
+    public int getVault() {
+        return vault;
+    }
+
+    public void setUsername(String username)
     {
 
         this.username = username;
 
+    }
+
+    public void setVault(int vault)
+    {
+        this.vault = vault;
     }
 
     public void setPassword(String password)
@@ -34,8 +43,7 @@ public class User
     }
 
 
-
-/************************************************************************************************************************************************************/
+    /************************************************************************************************************************************************************/
 /************************************************************************************************************************************************************/
 
     public  static int user_existence_checker(String username ) throws IOException, InterruptedException {
@@ -53,11 +61,11 @@ public class User
      */
     public boolean user_existence_checker(String username, String password) throws IOException, InterruptedException
     {
-        Login login = new Login();
+
 
         for (int i = 0; i < Login.user_list.length; i++) {
             if (username.equals(Login.user_list[i].getUsername()) && password.equals(Login.user_list[i].getPassword())) {
-                login.loged_in_index = i;
+                Login.loged_in_index = i;
                 return true;
 
             }
@@ -131,7 +139,27 @@ public class User
 
     private void add_charge()throws IOException, InterruptedException
     {
+        cls();
 
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                 Add charge                  *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*  PLease enter how much you want to spend :  *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+
+        Login.user_list[Login.loged_in_index].setVault(  ( Login.user_list[Login.loged_in_index].getVault() + scanner.nextInt() ) );
+
+        print_done();
+        System.out.println("\n\n\t\t\t\t\t\tvalut is : " + Login.user_list[Login.loged_in_index].getVault());
+        scanner.next();
+        regular_user_menu();
 
     }
 
@@ -180,90 +208,48 @@ public class User
 
         int search_mod;
 
-        while (true)
-        {
+
             search_mod = scanner.nextInt();
 
-            switch (search_mod) {
+            switch (search_mod)
+            {
 
-                case 1, 2, 3, 4, 5, 7:
-                    search_flight(0);
+                case 1 :
+                    filter_by_id();
+                    break;
+
+                case 2:
+                    filter_by_origin();
+                    break;
+
+                case 3:
+                    filter_by_dest();
+                    break;
+
+                case 4:
+                    filter_by_date();
+                    break;
+
+                case 5:
+                    filter_by_time();
                     break;
 
                 case 6:
-                    search_flight(1);
+                    filter_by_price();
                     break;
 
+                case 7:
+                    filter_by_seats();
+                    break;
 
                 case 0:
                     regular_user_menu();
                     break;
 
             }
-            cls();
-            System.out.println("end of filter switch case !");
-            if (scanner.nextInt()==85)
-                break;
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        System.out.print("\n\n\n\n\n\n\t\t");
-        System.out.print("+---------------------------------------------------------------------------------------------+");
-        System.out.printf("\n\t\t| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s|", "  Flight ID  ", "   Origins   ", "  Destention  ", "    Data    ", "   Time   ", "   Price   ", " Seats ");
-        System.out.print("\n\t\t");
-        System.out.print("+---------------------------------------------------------------------------------------------+");
-
-
-
-        for (int i = 0; i < FLight.flight_counter; i++)
-        {
-
-            if (Login.flight_ary[i].getFlight_id() != null)
-            {
-
-                System.out.print("\n\t\t");
-                System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
-                System.out.printf("|");
-                System.out.print("\n\t\t");
-                System.out.print("+---------------------------------------------------------------------------------------------+");
-
-            }
-        }
-
-        System.out.print("\n\n\n\t\t\t\t\t");
-        System.out.println("press any key to return...");
-        scanner.next();
-        Admin admin1 = new Admin();
-        admin1.admin_menu();
-
-
     }
 
-    /************************************************************************************************************************************************************/
+/************************************************************************************************************************************************************/
 
     private void booking_ticket() throws IOException, InterruptedException
     {
@@ -271,11 +257,10 @@ public class User
 
     }
 
-    /************************************************************************************************************************************************************/
+/************************************************************************************************************************************************************/
 
     private void change_password()throws IOException, InterruptedException
     {
-        Login login1 = new Login();
         cls();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
@@ -332,9 +317,377 @@ public class User
         String new_password;
         new_password = scanner.next();
 
-        Login.user_list[login1.loged_in_index].setPassword(new_password);
+        Login.user_list[Login.loged_in_index].setPassword(new_password);
 
 
+        print_done();
+
+        scanner.next();
+        regular_user_menu();
+
+    }
+
+/************************************************************************************************************************************************************/
+
+   public boolean password_checker( String last_pass )
+   {
+
+       if (last_pass.equals (Login.user_list[Login.loged_in_index].getPassword()) )
+       {
+           return true;
+       }
+
+       return false ;
+   }
+
+/************************************************************************************************************************************************************/
+
+
+    public static void cls() throws IOException, InterruptedException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }
+
+/************************************************************************************************************************************************************/
+
+   void filter_by_origin() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       String filter ;
+       print_search_box();
+       filter = scanner.next().toUpperCase();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+//           System.out.println("\n\nfilter is :" + filter );
+//           System.out.println("flight id is :" + Login.flight_ary[i].getFlight_id());
+//           scanner.next();
+           if (filter.equals(Login.flight_ary[i].getOrigin()))
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_id() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       String filter ;
+       print_search_box();
+       filter = scanner.next().toUpperCase();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if (filter.equals(Login.flight_ary[i].getFlight_id()))
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+        if ( null_flag == true )
+        {
+            System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+        }
+
+       System.out.println("\n\n\n press any key to return ...");
+        scanner.next();
+        regular_user_menu();
+
+
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_dest() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       String filter ;
+       print_search_box();
+       filter = scanner.next().toUpperCase();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if (filter.equals(Login.flight_ary[i].getDestination()))
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_date() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       String filter ;
+       print_search_box();
+       filter = scanner.next();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if (filter.equals(Login.flight_ary[i].getDate()))
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_time() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       String filter ;
+       print_search_box();
+       filter = scanner.next();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if (filter.equals(Login.flight_ary[i].getTime()))
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_price() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       int min_filter , max_filter;
+       price_search_box();
+
+       System.out.print("\n\t\t\t\tmin ---> ");
+       min_filter = scanner.nextInt();
+
+       System.out.print("\t\t\t\tmax ---> ");
+       max_filter = scanner.nextInt();
+
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if ( Login.flight_ary[i].getPrice() >= min_filter && Login.flight_ary[i].getPrice() <= max_filter )
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+   }
+/************************************************************************************************************************************************************/
+
+   void filter_by_seats() throws IOException, InterruptedException
+   {
+       cls();
+       boolean null_flag=true;
+       int filter ;
+       print_search_box();
+       filter = scanner.nextInt();
+
+       table_head_printer();
+
+       for (int i = 0; i < Login.flight_ary.length; i++)
+       {
+
+           if (filter == Login.flight_ary[i].getSeats())
+           {
+
+               null_flag=false;
+               System.out.print("\n\t\t");
+               System.out.printf("|    %-10s|    %-10s|    %-11s| %-12s|  %-9s|  %-10s|  %-4s  ", Login.flight_ary[i].getFlight_id(), Login.flight_ary[i].getOrigin(), Login.flight_ary[i].getDestination(), Login.flight_ary[i].getDate(), Login.flight_ary[i].getTime(), Login.flight_ary[i].getPrice(), Login.flight_ary[i].getSeats());
+               System.out.printf("|");
+               System.out.print("\n\t\t");
+               System.out.print("+---------------------------------------------------------------------------------------------+");
+           }
+
+       }
+
+
+       if ( null_flag == true )
+       {
+           System.out.println("\n\t\t\t\t\t\t\t Nothing found !");
+       }
+
+       System.out.println("\n\n\n press any key to return ...");
+       scanner.next();
+       regular_user_menu();
+
+   }
+/************************************************************************************************************************************************************/
+    void table_head_printer() throws IOException, InterruptedException
+    {
+        cls();
+        System.out.print("\n\n\n\n\n\n\t\t");
+        System.out.print("+---------------------------------------------------------------------------------------------+");
+        System.out.printf("\n\t\t| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s| %-1s|", "  Flight ID  ", "   Origins   ", "  Destention  ", "    Data    ", "   Time   ", "   Price   ", " Seats ");
+        System.out.print("\n\t\t");
+        System.out.print("+---------------------------------------------------------------------------------------------+");
+    }
+
+/************************************************************************************************************************************************************/
+
+    void print_search_box()throws IOException, InterruptedException
+    {
+        cls();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * * +");
+        System.out.println("\t\t\t\t* ::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*               Search flight                   *");
+        System.out.println("\t\t\t\t* ::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                               *");
+        System.out.println("\t\t\t\t*                                               *");
+        System.out.println("\t\t\t\t*  PLease enter what you want to filter by :    *");
+        System.out.println("\t\t\t\t*                                               *");
+        System.out.println("\t\t\t\t*                                               *");
+        System.out.println("\t\t\t\t* ::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * * +");
+    }
+
+    void price_search_box()throws IOException, InterruptedException
+    {
+        cls();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * *  +");
+        System.out.println("\t\t\t\t* :::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*               Search flight                    *");
+        System.out.println("\t\t\t\t* :::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                                *");
+        System.out.println("\t\t\t\t*                                                *");
+        System.out.println("\t\t\t\t*  PLease enter price range want to filter by :  *");
+        System.out.println("\t\t\t\t*                                                *");
+        System.out.println("\t\t\t\t*                                                *");
+        System.out.println("\t\t\t\t* :::::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * *  +");
+    }
+
+
+/************************************************************************************************************************************************************/
+
+    void print_done() throws IOException, InterruptedException
+    {
         cls();
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
@@ -350,41 +703,11 @@ public class User
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
         scanner.next();
-        regular_user_menu();
-
     }
 
-/************************************************************************************************************************************************************/
-
-   public boolean password_checker( String last_pass )
-   {
-
-       Login login = new Login();
-
-       if (last_pass.equals (Login.user_list[login.loged_in_index].getPassword()) )
-       {
-           return true;
-       }
-
-       return false ;
-   }
-
-    /************************************************************************************************************************************************************/
 
 
-    public static void cls() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }
 
-    /************************************************************************************************************************************************************/
-
-   void search_flight( int mod ) throws IOException, InterruptedException {
-       cls();
-       System.out.println("in the filter method \npress any key to return");
-       scanner.next();
-   }
-
-    /************************************************************************************************************************************************************/
 
 
 }

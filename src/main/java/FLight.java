@@ -10,6 +10,8 @@ public class FLight {
     private int price;
     private int seats;
 
+    static int id_counter = 13;
+
 
     static int flight_counter=3;
     Scanner scanner = new Scanner(System.in);
@@ -118,6 +120,9 @@ public class FLight {
     {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
+
+    /************************************************************************************************************************************************************/
+
 
     public int if_flight_exist( String id )
     {

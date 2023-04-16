@@ -9,7 +9,7 @@ Scanner scanner = new Scanner(System.in);
 static User user_list[] = new User[20];
 static FLight flight_ary[] = new FLight[20];
 static int user_counter = 0;
-int loged_in_index;
+static int loged_in_index;
 
 
 
@@ -236,25 +236,25 @@ public void sign_in() throws IOException, InterruptedException
     /************************************************************************************************************************************************************/
     void set_default_flights()
     {
-        flight_ary[0].setFlight_id("WX-12");
-        flight_ary[0].setOrigin("Yazd");
-        flight_ary[0].setDestination("Tehran");
+        flight_ary[0].setFlight_id("WX-10");
+        flight_ary[0].setOrigin("YAZD");
+        flight_ary[0].setDestination("TEHRAN");
         flight_ary[0].setDate("1401-12-10");
         flight_ary[0].setTime("12:30");
         flight_ary[0].setPrice(700000);
         flight_ary[0].setSeats(51);
 
-        flight_ary[1].setFlight_id("WX-13");
-        flight_ary[1].setOrigin("Yazd");
-        flight_ary[1].setDestination("Shiraz");
+        flight_ary[1].setFlight_id("WX-11");
+        flight_ary[1].setOrigin("YAZD");
+        flight_ary[1].setDestination("SHIRAZ");
         flight_ary[1].setDate("1401-12-8");
         flight_ary[1].setTime("8:30");
         flight_ary[1].setPrice(400000);
         flight_ary[1].setSeats(72);
 
-        flight_ary[2].setFlight_id("WX-14");
-        flight_ary[2].setOrigin("Yazd");
-        flight_ary[2].setDestination("Mashhad");
+        flight_ary[2].setFlight_id("WX-12");
+        flight_ary[2].setOrigin("YAZD");
+        flight_ary[2].setDestination("MASHHAD");
         flight_ary[2].setDate("1401-12-20");
         flight_ary[2].setTime("17:45");
         flight_ary[2].setPrice(800000);
