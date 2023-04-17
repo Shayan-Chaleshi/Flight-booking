@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class User
 {
+
     private String username;
     private String password;
 
@@ -43,8 +44,7 @@ public class User
     }
 
 
-    /************************************************************************************************************************************************************/
-/************************************************************************************************************************************************************/
+    //******************************************** ----> Functions
 
     public  static int user_existence_checker(String username ) throws IOException, InterruptedException {
 
@@ -56,9 +56,11 @@ public class User
 
         return 1;
     }
+
     /**
      * override
      */
+
     public boolean user_existence_checker(String username, String password) throws IOException, InterruptedException
     {
 
@@ -73,7 +75,7 @@ public class User
         return false;
     }
 
-    /********************************************************************************************************************************************************* */
+    //******************************************** ----> regular menu
     public void regular_user_menu() throws IOException, InterruptedException
     {
         Login login = new Login();
@@ -111,7 +113,7 @@ public class User
                 booking_ticket();
 
             case 4 :
-                ticket_cancelation();
+                ticket_cancellation();
 
             case 5 :
                 booked_ticket();
@@ -135,11 +137,27 @@ public class User
 
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ----> add charge
+
+
 
     private void add_charge()throws IOException, InterruptedException
     {
         cls();
+
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                 Add charge                  *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.printf("\t\t\t\t*   current vault is : %8s               *\n",5000);
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        scanner.next();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
@@ -157,13 +175,14 @@ public class User
         Login.user_list[Login.loged_in_index].setVault(  ( Login.user_list[Login.loged_in_index].getVault() + scanner.nextInt() ) );
 
         print_done();
-        System.out.println("\n\n\t\t\t\t\t\tvalut is : " + Login.user_list[Login.loged_in_index].getVault());
+        System.out.println("\n\n\t\t\t\t\t\tvault is : " + Login.user_list[Login.loged_in_index].getVault());
         scanner.next();
         regular_user_menu();
 
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ----> booked ticket
+
 
     private void booked_ticket()throws IOException, InterruptedException
     {
@@ -171,15 +190,15 @@ public class User
 
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ----> ticket cancellation
 
-    private void ticket_cancelation() throws IOException, InterruptedException
+    private void ticket_cancellation() throws IOException, InterruptedException
     {
 
 
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ----> search menu
 
     private void search_flight_menu() throws IOException, InterruptedException
     {
@@ -249,7 +268,7 @@ public class User
             }
     }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> booking ticket
 
     private void booking_ticket() throws IOException, InterruptedException
     {
@@ -257,7 +276,7 @@ public class User
 
     }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> change password
 
     private void change_password()throws IOException, InterruptedException
     {
@@ -327,7 +346,7 @@ public class User
 
     }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> password checker
 
    public boolean password_checker( String last_pass )
    {
@@ -340,14 +359,14 @@ public class User
        return false ;
    }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> clear screen
 
 
     public static void cls() throws IOException, InterruptedException {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search origin
 
    void filter_by_origin() throws IOException, InterruptedException
    {
@@ -388,7 +407,7 @@ public class User
        regular_user_menu();
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search id
 
    void filter_by_id() throws IOException, InterruptedException
    {
@@ -429,7 +448,7 @@ public class User
 
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search destination
 
    void filter_by_dest() throws IOException, InterruptedException
    {
@@ -470,7 +489,7 @@ public class User
 
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search date
 
    void filter_by_date() throws IOException, InterruptedException
    {
@@ -511,7 +530,7 @@ public class User
 
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search time
 
    void filter_by_time() throws IOException, InterruptedException
    {
@@ -552,7 +571,7 @@ public class User
 
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> search price
 
    void filter_by_price() throws IOException, InterruptedException
    {
@@ -597,8 +616,7 @@ public class User
        regular_user_menu();
 
    }
-/************************************************************************************************************************************************************/
-
+    //******************************************** ----> search seats
    void filter_by_seats() throws IOException, InterruptedException
    {
        cls();
@@ -636,7 +654,8 @@ public class User
        regular_user_menu();
 
    }
-/************************************************************************************************************************************************************/
+    //******************************************** ----> table header
+
     void table_head_printer() throws IOException, InterruptedException
     {
         cls();
@@ -647,7 +666,7 @@ public class User
         System.out.print("+---------------------------------------------------------------------------------------------+");
     }
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> print search table
 
     void print_search_box()throws IOException, InterruptedException
     {
@@ -684,7 +703,7 @@ public class User
     }
 
 
-/************************************************************************************************************************************************************/
+    //******************************************** ----> print Done
 
     void print_done() throws IOException, InterruptedException
     {

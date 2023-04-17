@@ -19,8 +19,7 @@ User user1 = new User();
 
 
 
-/******************************************************************************  welcome  ******************************************************************************/
-
+    //******************************************** ---->  welcome
     void welcome() throws IOException, InterruptedException {
         flight_ary_newer();
         user_newer();
@@ -28,8 +27,7 @@ User user1 = new User();
         sign_menu();
     }
 
-/******************************************************************************  Sign in  ******************************************************************************/
-
+    //******************************************** ---->  first menu
 
     public void sign_menu() throws IOException, InterruptedException
     {
@@ -75,89 +73,88 @@ User user1 = new User();
 
 
 
-/**********************************************************************************************************************************************************/
-
-public void sign_in() throws IOException, InterruptedException
-    {
-
-        cls();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*   please enter your username and password   *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*  username:                                  *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*  password:                                  *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-        String username;
-        String password;
-
-        username = scanner.next();
-        password = scanner.next();
-
-
-        /**  Admin condition  **/
-        if (username.toLowerCase().equals("admin") && password.toLowerCase().equals("admin"))
+    //******************************************** ---->  sign in
+    public void sign_in() throws IOException, InterruptedException
         {
-            Admin admin1 = new Admin();
-            admin1.admin_menu();
-        }
 
-        /**invalid condition*/
-        if (User.user_existence_checker(username) == 1)
-        {
             cls();
             System.out.println("\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            User does not exist              *");
+            System.out.println("\t\t\t\t*   please enter your username and password   *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            please try again...              *");
+            System.out.println("\t\t\t\t*  username:                                  *");
             System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*  password:                                  *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            press any key to return...       *");
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            String username;
+            String password;
 
-            scanner.next();
-            sign_in();
+            username = scanner.next();
+            password = scanner.next();
+
+
+            /**  Admin condition  **/
+            if (username.toLowerCase().equals("admin") && password.toLowerCase().equals("admin"))
+            {
+                Admin admin1 = new Admin();
+                admin1.admin_menu();
+            }
+
+            /**invalid condition*/
+            if (User.user_existence_checker(username) == 1)
+            {
+                cls();
+                System.out.println("\n\n\n\n\n\n\n\n\n\n");
+                System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+                System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            User does not exist              *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            please try again...              *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            press any key to return...       *");
+                System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+                System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+
+                scanner.next();
+                sign_in();
+            }
+
+            /** Wrong password **/
+            if (user1.user_existence_checker(username, password ) == false)
+
+            {
+                cls();
+                System.out.println("\n\n\n\n\n\n\n\n\n\n");
+                System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+                System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            incorrect password               *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            please try again...              *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*            press any key to return...       *");
+                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+                System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+                scanner.next();
+                sign_in();
+            }
+
+
+            user1.regular_user_menu();
+
+
         }
 
-        /** Wrong password **/
-        if (user1.user_existence_checker(username, password ) == false)
 
-        {
-            cls();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n");
-            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-            System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            incorrect password               *");
-            System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            please try again...              *");
-            System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*            press any key to return...       *");
-            System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-            scanner.next();
-            sign_in();
-        }
-
-
-        user1.regular_user_menu();
-
-
-    }
-
-
-    /**********************************************************************************************************************************************************/
+    //******************************************** ---->  sign up
     public void sign_up() throws IOException, InterruptedException
     {
         cls();
@@ -201,19 +198,13 @@ public void sign_in() throws IOException, InterruptedException
 
 
 
-    /********************************************************************************  clear screen  ***************************************************************************************/
-
+    //******************************************** ---->  clear screen
     public static void cls() throws IOException, InterruptedException
     {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-    /********************************************************** user checker **************************************************************************************************/
-
-
-
-    /************************************************************************************************************************************************************/
-
+    //******************************************** ---->  user newer
     static void user_newer() throws IOException, InterruptedException
     {
         for (int i = 0; i < user_list.length; i++)
@@ -222,8 +213,7 @@ public void sign_in() throws IOException, InterruptedException
         }
     }
 
-    /************************************************************************************************************************************************************/
-
+    //******************************************** ---->  flight newer
     static void  flight_ary_newer()
     {
 
@@ -233,7 +223,7 @@ public void sign_in() throws IOException, InterruptedException
         }
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ---->  default flights
     void set_default_flights()
     {
         flight_ary[0].setFlight_id("WX-10");
@@ -261,13 +251,6 @@ public void sign_in() throws IOException, InterruptedException
         flight_ary[2].setSeats(60);
     }
 
-    /************************************************************************************************************************************************************/
-
-    /************************************************************************************************************************************************************/
-
-    /************************************************************************************************************************************************************/
-
-    /************************************************************************************************************************************************************/
 
 
 }
