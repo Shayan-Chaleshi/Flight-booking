@@ -178,7 +178,7 @@ User user1 = new User();
         password = scanner.next();
 
 
-        if (User.user_existence_checker(username) == 0 || username.toLowerCase().equals("admin") || password.toLowerCase().equals("admin")) {
+        if ( User.user_existence_checker(username) == 0 || username.toLowerCase().equals("admin") || password.toLowerCase().equals("admin")) {
             System.out.println("this username exist \n try another one...\npress any key to return...");
             scanner.next();
             sign_up();

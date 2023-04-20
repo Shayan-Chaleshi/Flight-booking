@@ -6,8 +6,10 @@ public class User
 
     private String username;
     private String password;
+    private int wallet ;
 
-    private int vault;
+    private int ticket_counter=0;
+    Ticket tickets[] = new Ticket[10];
 
     Scanner scanner = new Scanner (System.in);
 
@@ -23,7 +25,7 @@ public class User
     }
 
     public int getVault() {
-        return vault;
+        return wallet;
     }
 
     public void setUsername(String username)
@@ -35,7 +37,7 @@ public class User
 
     public void setVault(int vault)
     {
-        this.vault = vault;
+        this.wallet = vault;
     }
 
     public void setPassword(String password)
@@ -79,6 +81,7 @@ public class User
     public void regular_user_menu() throws IOException, InterruptedException
     {
         Login login = new Login();
+        FLight fLight = new FLight();
 
         cls();
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
@@ -88,11 +91,12 @@ public class User
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*   1) Change password                        *");
-        System.out.println("\t\t\t\t*   2) Search flight ticket                   *");
-        System.out.println("\t\t\t\t*   3) Booking ticket                         *");
-        System.out.println("\t\t\t\t*   4) Ticket cancellation                    *");
-        System.out.println("\t\t\t\t*   5) Booked ticket                          *");
-        System.out.println("\t\t\t\t*   6) Add charge                             *");
+        System.out.println("\t\t\t\t*   2) Search flight                          *");
+        System.out.println("\t\t\t\t*   3) Show flights table                     *");
+        System.out.println("\t\t\t\t*   4) Booking ticket                         *");
+        System.out.println("\t\t\t\t*   5) Ticket cancellation                    *");
+        System.out.println("\t\t\t\t*   6) Booked ticket                          *");
+        System.out.println("\t\t\t\t*   7) Add charge                             *");
         System.out.println("\t\t\t\t*   0) Sign out                               *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
@@ -108,17 +112,20 @@ public class User
 
             case 2 :
                 search_flight_menu();
-                
+
             case 3 :
+                fLight.flight_table(0);
+                
+            case 4 :
                 booking_ticket();
 
-            case 4 :
+            case 5 :
                 ticket_cancellation();
 
-            case 5 :
+            case 6 :
                 booked_ticket();
 
-            case 6 :
+            case 7 :
                 add_charge();
 
             case 0 :
@@ -152,7 +159,7 @@ public class User
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
-        System.out.printf("\t\t\t\t*   current vault is : %8s               *\n",5000);
+        System.out.printf("\t\t\t\t*   current vault is : %8s               *\n",Login.user_list[Login.loged_in_index].getVault());
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
@@ -186,7 +193,21 @@ public class User
 
     private void booked_ticket()throws IOException, InterruptedException
     {
+        cls();
+        for (int i = 0; i < ticket_counter; i++)
+        {
+            System.out.println("***".repeat(20));
+            System.out.println("ticket id is : " + tickets[i].getTicket_id());
+            System.out.println("flight id is : " + tickets[i].getFlight_id());
+            System.out.println("***".repeat(20));
+            System.out.println("ticket counter is : " + ticket_counter );
+//*********
 
+
+
+        }
+        scanner.next();
+        regular_user_menu();
 
     }
 
@@ -223,8 +244,8 @@ public class User
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +\n\n");
+        System.out.println("\t\t\t\t*     Selected filters : ");
         int search_mod;
 
 
@@ -272,9 +293,103 @@ public class User
 
     private void booking_ticket() throws IOException, InterruptedException
     {
+        FLight flight = new FLight();
+        cls();
+
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*               Booking ticket                *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*           Please enter flight id :          *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+
+        String flight_id = scanner.next();
+        int flight_index = flight.if_flight_exist(flight_id.toUpperCase());
+
+        if( flight_index == -1 )
+        {
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               Booking ticket                *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*           Flight does not exist!            *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*           press any key to return ...       *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            booking_ticket();
+        }
+
+        if ( is_wallet_enough(flight_index) == false)
+        {
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               Booking ticket                *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*          your wallet isn't enough !         *");
+            System.out.println("\t\t\t\t*            charge your wallet !             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*           press any key to return ...       *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            regular_user_menu();
+        }
+
+        if ( is_flight_full(flight_index) == true )
+        {
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               Booking ticket                *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*             flight is full !                *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*          press any key to return ...        *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            regular_user_menu();
+        }
+
+        tickets[ticket_counter] = new Ticket();
+        tickets[ticket_counter].setFlight_id(flight_id);
+        tickets[ticket_counter].setStatus(true);
+        tickets[ticket_counter].setTicket_id( 159100 + Ticket.ticket_id_counter);
+        Ticket.ticket_id_counter++;
+        ticket_counter++;
+
+        print_done();
+        regular_user_menu();
+
+
+
+
 
 
     }
+
+
 
     //******************************************** ----> change password
 
@@ -724,7 +839,26 @@ public class User
         scanner.next();
     }
 
+//******************************
+    private boolean is_flight_full(int flight_index )
+    {
+        if (Login.flight_ary[flight_index].getSeats() != 0  )
+            return false ;
 
+        else
+         return true;
+
+    }
+//*******************************
+    private boolean is_wallet_enough(int flight_index)
+    {
+        if (Login.user_list[Login.loged_in_index].getVault() >= Login.flight_ary[flight_index].getPrice() )
+            return true;
+
+        else
+            return false;
+    }
+//******************************
 
 
 

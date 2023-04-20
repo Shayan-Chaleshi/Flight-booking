@@ -73,7 +73,7 @@ public class Admin
                 break;
 
             case 4:
-                flight1.flight_table();
+                flight1.flight_table(1);
                 break;
 
             case 5:
@@ -118,8 +118,8 @@ public class Admin
 
 
         input="WX-";
-        input+=FLight.id_counter;
-        FLight.id_counter++;
+        input+=FLight.id_generator_counter;
+        FLight.id_generator_counter++;
         Login.flight_ary[flight_index].setFlight_id(input.toUpperCase());
 
 
@@ -154,7 +154,7 @@ public class Admin
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t     Done!\n\n");
         System.out.println("\n\t\t\t\t\t    Press any key to return...");
         scanner.next();
-        FLight.flight_counter++;
+        FLight.flights_counter++;
         admin_menu();
     }
 

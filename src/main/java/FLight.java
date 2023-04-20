@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FLight {
@@ -10,16 +11,18 @@ public class FLight {
     private int price;
     private int seats;
 
-    static int id_counter = 13;
+
+    static int id_generator_counter = 13;
 
 
-    static int flight_counter=3;
+    static int flights_counter=3;
     Scanner scanner = new Scanner(System.in);
 
 
 //******************************************** ---->  Functions
 
     public String getFlight_id() {
+
         return flight_id;
     }
 
@@ -78,7 +81,7 @@ public class FLight {
 //******************************************** ----> flight table
 
 
-    public void flight_table() throws IOException, InterruptedException
+    public void flight_table(int return_mod) throws IOException, InterruptedException
     {
         cls();
 
@@ -89,7 +92,7 @@ public class FLight {
         System.out.print("\n\t\t");
         System.out.print("+---------------------------------------------------------------------------------------------+");
 
-        for (int i = 0; i < flight_counter; i++)
+        for (int i = 0; i < flights_counter; i++)
         {
 
             if (Login.flight_ary[i].getFlight_id() != null)
@@ -108,7 +111,12 @@ public class FLight {
             System.out.println("press any key to return...");
             scanner.next();
             Admin admin1 = new Admin();
-            admin1.admin_menu();
+            User user = new User();
+
+            if (return_mod == 1 )
+                admin1.admin_menu();
+            else
+                user.regular_user_menu();
 
 
 
@@ -123,7 +131,7 @@ public class FLight {
 
 //******************************************** ----> if flight exist
 
-    public int if_flight_exist( String id )
+    public static int if_flight_exist( String id )
     {
         for (int i = 0; i <Login.flight_ary.length ; i++)
         {
