@@ -4,7 +4,7 @@ public class Ticket
     private String flight_id;
     private boolean status=false;
 
-    public static int ticket_id_counter=0;
+    public static int ticket_id_generator_counter=0;
     public int getTicket_id() {
         return ticket_id;
     }
@@ -29,8 +29,4 @@ public class Ticket
         this.status = status;
     }
 
-//    public Ticket()
-//    {
-//        ticket_id_counter++;
-//    }
 }

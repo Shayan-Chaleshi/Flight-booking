@@ -48,7 +48,7 @@ public class Admin
         System.out.println("\t\t\t\t*  2)Update                                   *");
         System.out.println("\t\t\t\t*  3)Remove                                   *");
         System.out.println("\t\t\t\t*  4)Flight schedules                         *");
-        System.out.println("\t\t\t\t*  5)Sign out                                 *");
+        System.out.println("\t\t\t\t*  0)Sign out                                 *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
@@ -76,7 +76,7 @@ public class Admin
                 flight1.flight_table(1);
                 break;
 
-            case 5:
+            case 0:
                 Login login1 = new Login();
                 login1.sign_menu();
                 break;
@@ -110,51 +110,95 @@ public class Admin
         System.out.println("\t\t\t\t*   7---> Exit                                *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*          [ press + to turn back ]           *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +\n");
 
+
         int flight_index = first_null_flight();
         String input;
+        FLight temp_flight = new FLight();
 
 
-        input="WX-";
-        input+=FLight.id_generator_counter;
-        FLight.id_generator_counter++;
-        Login.flight_ary[flight_index].setFlight_id(input.toUpperCase());
+
+
 
 
         System.out.print("\t\t\t\t\t#  Origin --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setOrigin(input.toUpperCase());
+        if (input.equals("+"))
+            admin_menu();
+
+        temp_flight.setOrigin(input);
+
+
+
 
 
         System.out.print("\t\t\t\t\t#  Destination --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setDestination(input.toUpperCase());
+        if (input.equals("+"))
+            admin_menu();
+
+        temp_flight.setDestination(input);
+
+
 
 
         System.out.print("\t\t\t\t\t#  Date --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setDate(input);
+        if (input.equals("+"))
+            admin_menu();
+
+        temp_flight.setDate(input);
+
+
 
 
         System.out.print("\t\t\t\t\t#  Time --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setTime(input);
+        if (input.equals("+"))
+            admin_menu();
+
+        temp_flight.setTime(input);
+
+
 
         System.out.print("\t\t\t\t\t#  Price --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setPrice(Integer.valueOf(input));
+        if (input.equals("+"))
+            admin_menu();
+
+        temp_flight.setPrice(Long.valueOf(input));
+
+
+
 
         System.out.print("\t\t\t\t\t#  Seats --->  ");
         input=scanner.next();
-        Login.flight_ary[flight_index].setSeats(Integer.valueOf(input));
+        if (input.equals("+"))
+            admin_menu();
 
-        cls();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t     Done!\n\n");
-        System.out.println("\n\t\t\t\t\t    Press any key to return...");
-        scanner.next();
-        FLight.flights_counter++;
+        temp_flight.setSeats(Integer.valueOf(input));
+
+        String id_generator;
+        id_generator="WX-";
+        id_generator+=FLight.flight_id_generator_counter;
+        FLight.flight_id_generator_counter++;
+        Login.flight_ary[flight_index].setFlight_id(id_generator.toUpperCase());
+
+        Login.flight_ary[flight_index].setOrigin(temp_flight.getOrigin());
+        Login.flight_ary[flight_index].setDestination(temp_flight.getDestination());
+        Login.flight_ary[flight_index].setDate(temp_flight.getDate());
+        Login.flight_ary[flight_index].setTime(temp_flight.getTime());
+        Login.flight_ary[flight_index].setPrice(temp_flight.getPrice());
+        Login.flight_ary[flight_index].setSeats(temp_flight.getSeats());
+
+
+
+
+
+        print_done();
         admin_menu();
     }
 
@@ -173,11 +217,14 @@ public class Admin
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*          [ press + to turn back ]           *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
         String id;
         id = scanner.next();
+        if (id.equals("+"))
+            admin_menu();
 
         FLight flight1 = new FLight();
 
@@ -192,10 +239,10 @@ public class Admin
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t*                                             *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*        flight does not exist                *");
-            System.out.println("\t\t\t\t*        press any key to try again...        *");
+            System.out.println("\t\t\t\t*          flight does not exist !             *");
             System.out.println("\t\t\t\t*                                             *");
             System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*       press any key to try again...         *");
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
             scanner.next();
@@ -212,107 +259,99 @@ public class Admin
     //******************************************** ---->  edit menu 2
     void edit_flight_menu2() throws IOException, InterruptedException
     {
+        while(true)
+        {
 
-        cls();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*               edit flight                   *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*      which one do you want to change        *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*    1) flight id                             *");
-        System.out.println("\t\t\t\t*    2) origin                                *");
-        System.out.println("\t\t\t\t*    3) destination                           *");
-        System.out.println("\t\t\t\t*    5) time                                  *");
-        System.out.println("\t\t\t\t*    6) price                                 *");
-        System.out.println("\t\t\t\t*    7) seats                                 *");
-        System.out.println("\t\t\t\t*    8) exit                                  *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               edit flight                   *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*      which one do you want to change        *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*    1) flight id                             *");
+            System.out.println("\t\t\t\t*    2) origin                                *");
+            System.out.println("\t\t\t\t*    3) destination                           *");
+            System.out.println("\t\t\t\t*    4) date                                  *");
+            System.out.println("\t\t\t\t*    5) time                                  *");
+            System.out.println("\t\t\t\t*    6) price                                 *");
+            System.out.println("\t\t\t\t*    7) seats                                 *");
+            System.out.println("\t\t\t\t*    0) exit                                  *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
-        int edit_mod;
-        edit_mod = scanner.nextInt();
+            int edit_mod;
+            edit_mod = scanner.nextInt();
 
-        if (edit_mod==8)
-            admin_menu();
-
-
-        cls();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*               edit flight                    *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*   enter the new value and press enter :     *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            if (edit_mod == 0)
+                admin_menu();
 
 
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               edit flight                    *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*   enter the new value and press enter :     *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*          [ press + to turn back ]           *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
 
+            edit_flight(flight_index, edit_mod);
 
-        edit_flight(flight_index , edit_mod);
+            print_done();
+        }
 
-        cls();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*               edit flight                   *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*                   Done!                     *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*          Press any key to return...         *");
-        System.out.println("\t\t\t\t*                                             *");
-        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
-        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
-
-        scanner.next();
-        admin_menu();
 
     }
 
     //******************************************** ---->  edit flight logic
-    void edit_flight(int flight_index, int mod ) {
+    void edit_flight(int flight_index, int mod ) throws IOException, InterruptedException {
 
 
-        String fligt_info;
-        fligt_info = scanner.next();
+        String flight_info;
+        flight_info = scanner.next();
+        if (flight_info.equals("+"))
+            edit_flight_menu2();
+
 
         switch (mod) {
             case 1:
-                Login.flight_ary[flight_index].setFlight_id(fligt_info.toUpperCase());
+                Login.flight_ary[flight_index].setFlight_id(flight_info.toUpperCase());
                 break;
             case 2:
-                Login.flight_ary[flight_index].setOrigin(fligt_info.toUpperCase());
+                Login.flight_ary[flight_index].setOrigin(flight_info.toUpperCase());
                 break;
             case 3:
-                Login.flight_ary[flight_index].setDestination(fligt_info.toUpperCase());
+                Login.flight_ary[flight_index].setDestination(flight_info.toUpperCase());
                 break;
             case 4:
-                Login.flight_ary[flight_index].setDate(fligt_info.toUpperCase());
+                Login.flight_ary[flight_index].setDate(flight_info.toUpperCase());
                 break;
             case 5:
-                Login.flight_ary[flight_index].setTime(fligt_info.toUpperCase());
+                Login.flight_ary[flight_index].setTime(flight_info.toUpperCase());
                 break;
             case 6:
-                Login.flight_ary[flight_index].setPrice(Integer.valueOf(fligt_info));
+                Login.flight_ary[flight_index].setPrice(Integer.valueOf(flight_info));
                 break;
             case 7:
-                Login.flight_ary[flight_index].setSeats(Integer.valueOf(fligt_info));
+                Login.flight_ary[flight_index].setSeats(Integer.valueOf(flight_info));
                 break;
 
         }
     }
 
 
-    //******************************************** ---->  delete menu
+    //******************************************** ---->  delete flight
     void delete_flight() throws IOException, InterruptedException
     {
+
         cls();
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
@@ -324,30 +363,20 @@ public class Admin
         System.out.println("\t\t\t\t*        Enter flight id to delete :          *");
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*          [ press + to turn back ]           *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
+
         String delete_id;
         delete_id = scanner.next().toUpperCase();
-        FLight fLight = new FLight();
+        if (delete_id.equals("+"))
+            admin_menu();
 
         int flight_exictance;
-        flight_exictance = fLight.if_flight_exist(delete_id);
-        System.out.println(flight_exictance);
+        flight_exictance = FLight.if_flight_exist(delete_id);
 
-        if (flight_exictance != -1)
-        {
-
-            Login.flight_ary[flight_exictance].setFlight_id(null);
-            Login.flight_ary[flight_exictance].setDestination(null);
-            Login.flight_ary[flight_exictance].setOrigin(null);
-            Login.flight_ary[flight_exictance].setDate(null);
-            Login.flight_ary[flight_exictance].setTime(null);
-            Login.flight_ary[flight_exictance].setPrice(0);
-            Login.flight_ary[flight_exictance].setSeats(0);
-        }
-
-        else
+        if (flight_exictance == -1)
         {
             cls();
             System.out.println("\n\n\n\n\n\n\n\n\n\n");
@@ -357,14 +386,49 @@ public class Admin
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t*                                             *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*           Flight does not exist             *");
+            System.out.println("\t\t\t\t*           Flight does not exist !           *");
             System.out.println("\t\t\t\t*                                             *");
-            System.out.println("\t\t\t\t*           Press any key to return...        *");
             System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*          Press any key to return...         *");
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
             scanner.next();
             delete_flight();
+
+        }
+
+
+        else if (is_flight_bought(delete_id) == true)
+        {
+            cls();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*               Delete menu                   *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*               Access Denied !               *");
+            System.out.println("\t\t\t\t*        The fLight cannot be deleted.         *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*           Press any key to return...        *");
+            System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+            System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+            scanner.next();
+            admin_menu();
+        }
+
+
+        else
+        {
+            Login.flight_ary[flight_exictance].setFlight_id(null);
+            Login.flight_ary[flight_exictance].setDestination(null);
+            Login.flight_ary[flight_exictance].setOrigin(null);
+            Login.flight_ary[flight_exictance].setDate(null);
+            Login.flight_ary[flight_exictance].setTime(null);
+            Login.flight_ary[flight_exictance].setPrice(0);
+            Login.flight_ary[flight_exictance].setSeats(0);
         }
 
         cls();
@@ -382,6 +446,8 @@ public class Admin
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+;
+
         scanner.next();
         admin_menu();
 
@@ -404,8 +470,46 @@ public class Admin
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-    /************************************************************************************************************************************************************/
+    //******************************************** ----> is flight bought
+    private  boolean is_flight_bought(String flight_id)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            if (Login.user_list[i] != null)
+            {
+                for (int j = 0; j < 15; j++)
+                {
+                    if (Login.user_list[Login.loged_in_index].tickets[j] != null)
+                    {
+                        if (Login.user_list[i].tickets[j].getFlight_id().equals(flight_id))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
 
+    }
+    //******************************************** ----> print Done
+
+    void print_done() throws IOException, InterruptedException
+    {
+        cls();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*               Change password               *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                   Done!                     *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*          Press any key to return...         *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
+        System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
+
+        scanner.next();
+    }
 
 
 

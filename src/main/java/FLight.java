@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FLight {
@@ -8,14 +7,14 @@ public class FLight {
     private String destination;
     private String date;
     private String time;
-    private int price;
+    private long price;
     private int seats;
 
 
-    static int id_generator_counter = 13;
+
+    static int flight_id_generator_counter = 13;
 
 
-    static int flights_counter=3;
     Scanner scanner = new Scanner(System.in);
 
 
@@ -42,7 +41,7 @@ public class FLight {
         return time;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
@@ -70,7 +69,7 @@ public class FLight {
         this.time = time;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
@@ -79,7 +78,6 @@ public class FLight {
     }
 
 //******************************************** ----> flight table
-
 
     public void flight_table(int return_mod) throws IOException, InterruptedException
     {
@@ -92,7 +90,7 @@ public class FLight {
         System.out.print("\n\t\t");
         System.out.print("+---------------------------------------------------------------------------------------------+");
 
-        for (int i = 0; i < flights_counter; i++)
+        for (int i = 0; i < Login.flight_ary.length; i++)
         {
 
             if (Login.flight_ary[i].getFlight_id() != null)
@@ -142,6 +140,7 @@ public class FLight {
         return -1;
     }
 
-//******************************************** ---->
+
+    
 
 }

@@ -88,12 +88,16 @@ User user1 = new User();
             System.out.println("\t\t\t\t*                                             *");
             System.out.println("\t\t\t\t*  password:                                  *");
             System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*                                             *");
+            System.out.println("\t\t\t\t*         [ press + to turn back ]            *");
             System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
             System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
             String username;
             String password;
 
             username = scanner.next();
+            if (username.equals("+"))
+                sign_menu();
             password = scanner.next();
 
 
@@ -117,7 +121,7 @@ User user1 = new User();
                 System.out.println("\t\t\t\t*            please try again...              *");
                 System.out.println("\t\t\t\t*                                             *");
                 System.out.println("\t\t\t\t*                                             *");
-                System.out.println("\t\t\t\t*            press any key to return...       *");
+                System.out.println("\t\t\t\t*           press any key to return...        *");
                 System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
                 System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
@@ -139,8 +143,7 @@ User user1 = new User();
                 System.out.println("\t\t\t\t*            please try again...              *");
                 System.out.println("\t\t\t\t*                                             *");
                 System.out.println("\t\t\t\t*                                             *");
-                System.out.println("\t\t\t\t*            press any key to return...       *");
-                System.out.println("\t\t\t\t*                                             *");
+                System.out.println("\t\t\t\t*         press any key to return...          *");
                 System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
                 System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
                 scanner.next();
@@ -168,13 +171,18 @@ User user1 = new User();
         System.out.println("\t\t\t\t*                                             *");
         System.out.println("\t\t\t\t*  password:                                  *");
         System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*                                             *");
+        System.out.println("\t\t\t\t*          [ press + to turn back ]           *");
         System.out.println("\t\t\t\t*:::::::::::::::::::::::::::::::::::::::::::: *");
         System.out.println("\t\t\t\t+ * * * * * * * * * * * * * * * * * * * * * * +");
 
         String username;
+
         String password;
 
         username = scanner.next();
+        if (username.equals("+"))
+            sign_menu();
         password = scanner.next();
 
 
@@ -184,7 +192,8 @@ User user1 = new User();
             sign_up();
         }
 
-        else {
+        else
+        {
 
             user_list[user_counter].setUsername(username);
             user_list[user_counter].setPassword(password);
